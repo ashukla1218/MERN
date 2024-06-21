@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* body>div{
+    background-color: purple;
+    margin: 40px;
+    height: 200px;
+    width: 200px;
+}
+.c1{
+    background-color: yellow;
+    height: 75px;
+    width: 75px;
+}
+.c2{
+    background-color: green;
+    height: 75px;
+    width: 75px;
+    position: relative;
+    left: 75px;
+}
+.c3{
+    background-color: blue;
+    height: 75px;
+    width: 75px;
+    position: relative;
+    left: 75px;
+}
+.c4{
+    background-color: orange;
+    height: 75px;
+    width: 75px;
+} */
+
+/* next part */
+
+/* body>div{
+    background-color: purple;
+    margin: 40px;
+    height: 200px;
+    width: 200px;
+}
+.c1{
+    background-color: yellow;
+    height: 75px;
+    width: 75px;
+    position: relative;
+    left: 25px;
+    top: 25px;
+}
+.c2{
+    background-color: green;
+    height: 75px;
+    width: 75px;
+    position: relative;
+    left: 75px;
+}
+.c3{
+    background-color: blue;
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+}
+.c4{
+    background-color: orange;
+    height: 75px;
+    width: 75px;
+} */
+
+/* task 3 */
+body>div{
+    background-color: purple;
+    margin: 40px;
+    height: 200px;
+    width: 200px;
+}
+.c1{
+    background-color: yellow;
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    
+}
+.c2{
+    background-color: green;
+    height: 75px;
+    width: 75px;
+    
+}
+.c3{
+    background-color: blue;
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    
+}
+.c4{
+    background-color: orange;
+    height: 75px;
+    width: 75px;
+    position: relative;
+}

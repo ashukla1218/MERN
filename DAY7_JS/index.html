@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Callbacks and Promises</title>
+    <style>
+        #root{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 70px;
+            justify-content: center;
+            padding: 30px;
+            
+        }
+        .product-card{
+            /* border: 2px solid black; */
+            border-radius: 10px;
+            margin: 50px;
+            padding: 16px;
+            width: 200px ;
+            height: 320px;
+            text-align: center;
+            box-shadow: 0 2px 5px black
+            
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            
+        }
+        #searchBar{
+            position: fixed;
+            margin-top: 70px;
+            padding: 10px;
+            width: 50%;
+            max-width: 600px;
+            min-width: 200px;
+            font-size: 16px;
+            border: 2px solid black;
+            border-radius: 10px;
+            
+        }
+        #navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        #navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: larger;
+        }
+        
+    </style>
+</head>
+<body>
+    <h3>JS Callbacks and Promises</h3>
+    <div id="navbar">
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div id="root"></div>
+    <input type="text" id="searchBar" placeholder="Search products...">
+    <!-- <button>Click me</button>
+    <input type="text"> -->
+    <script src="./script.js"></script>
+</body>
+</html> 
