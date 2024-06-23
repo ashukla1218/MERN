@@ -26,7 +26,7 @@ const app = http.createServer(async (req, res) => {
                     <h3>${data[i].title}</h3>
                     <img src="${data[i].thumbnail}" alt='product-image' height='200'>
                     <p>${data[i].description}</p>
-                    <a href="/view?id=${data[i].id}" target="_blank">View products</a>
+                    <button class="viewButton"><a href="/view?id=${data[i].id}" target="_blank" class="button">View products</a></button>
                 </div>`;
             }
             text = text.replace("$TITLE$",ProductsText);

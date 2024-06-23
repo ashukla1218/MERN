@@ -2,13 +2,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
         nav{
             height: 10vh;
             background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        nav>h1{
+            color: white;
+            padding: 14px 20px;
+        }
+        nav>a{
+            color: white;   
+            text-decoration: none;
+            flex-basis: calc(100% - 500px);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 14px 20px;
         }
         main{
+            background-color: goldenrod;
             display: flex;
             gap: 50px;
             padding: 20px;
@@ -25,28 +48,50 @@
             flex-wrap: wrap;
             justify-content: center;
             text-align: center;
-            box-shadow: 0 2px 5px grey;
+            box-shadow: 0 20px 50px black;
             
         }
         .product-card:hover{
-            background-color: rgb(250, 219, 230);
+            background-color: rgb(248, 218, 144);
         }
         img{
             display: block;
             width: fit-content;
             margin: 0 auto;
         }
-        footer{
+        footer {
             background-color: black;
-            height: 20vh;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
+        .viewButton{
+            border-radius: 20px;
+            background-color: black;
+            color: white;
+            width: 150px;
+        }
+       .button{
+            text-decoration: none;
+            color: white;
+    }
     </style>
 </head>
 <body>
-    <nav></nav>
+    <nav>
+        <h1>PRODUCT HUB</h1>
+        <a href="/">HOME</a>
+        <a href="/about">ABOUT</a>
+        <a href="/contact">CONTACT</a>
+    </nav>
     <main>
         $TITLE$
     </main>
-    <footer></footer>
+    <footer>
+        <p>&copy; 2024 Aashutosh Product Hub. All rights reserved.</p>
+    </footer>
 </body>
 </html>
