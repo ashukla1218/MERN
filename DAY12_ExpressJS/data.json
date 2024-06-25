@@ -36,5 +36,14 @@
     "description": "This is a wrist watch by titan",
     "price": 99,
     "id": 2
+  },
+  {
+    "id": 3
+  },
+  {
+    "id": 4
+  },
+  {
+    "id": 5
   }
 ]
