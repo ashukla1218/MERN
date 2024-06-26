@@ -18,17 +18,10 @@ const client = new MongoClient(dbURL, {
   }
 });
 
-async function run() {
-  try {
-    const database = client.db(process.env.DB_NAME);
-    const products = database.collection("products");
-    products.insertOne({
-        "name":"Aashutosh",
-    });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } catch(err) {
-    // Ensures that the client will close when you finish/error
-    console.log(err);
-  }
-}
-run();
+const database = client.db(process.env.DB_NAME);
+const produtsCollection = database.collection("products");
+
+module.exports = {
+    database,
+    produtsCollection,
+};
