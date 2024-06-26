@@ -1,5 +1,29 @@
 const fsPromises = require("fs/promises");
 
+const validateForTitleAndPrice = (req, res, next) => {
+    const body = req.body;
+    if (!body.title || !body.price) {
+        res.json({
+            status: "fail",
+            message: "!! Title and Price is required",
+        });
+        return;
+    }
+    next();
+};
+
+const getDataMiddleware = async(req, res, next) => {
+    const text = await fsPromises.readFile("./data.json", { encoding: "utf8" });
+    let products;
+    try {
+        products = JSON.parse(text);
+    } catch {
+        products = [];
+    }
+    req.products = products;
+    next();
+};
+
 const getData = async () => {
     const text = await fsPromises.readFile("./data.json", { encoding: "utf8" });
     let products;
@@ -12,7 +36,7 @@ const getData = async () => {
 };
 
 const getProducts = async (req, res) => {
-    let products = await getData();
+    let products = req.products;
     res.json({
         status: "success",
         data: {
@@ -30,7 +54,7 @@ const createProduct = async (req, res) => {
         });
         return;
     }
-    const products = await getData();
+    const products = req.products;
     let lastId = 0;
     if (products.length != 0) {
         lastId = products[products.length - 1].id;
@@ -58,7 +82,7 @@ const replaceProduct = async (req, res) => {
         });
         return;
     }
-    const products = await getData();
+    const products = req.products;
     const prIdx = products.findIndex((elem) => {
         if (elem.id == params.id) return true;
         return false;
@@ -86,7 +110,7 @@ const replaceProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     const params = req.params;
-    const products = await getData();
+    const products = req.products;
     const prIdx = products.findIndex((elem) => {
         if (elem.id == params.id) return true;
         return false;
@@ -115,7 +139,7 @@ const deleteProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
     const params = req.params;
     const body = req.body;
-    const products = await getData();
+    const products = req.products;
     const prIdx = products.findIndex((elem) => {
         if (elem.id == params.id) return true;
         return false;
@@ -151,4 +175,6 @@ module.exports = {
     replaceProduct,
     deleteProduct,
     updateProduct,
+    validateForTitleAndPrice,
+    getDataMiddleware,
 };
