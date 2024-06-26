@@ -8,17 +8,17 @@ const productRouter = require("./routes/productRoutes.js");
 
 const app = express();
 
-//internal middleware
+// internal middleware
 app.use(express.json());
 
-//custom middleware
-app.use((req,res)=>{
+// custom middleware
+app.use((req, res, next) => {
     res.set({ "server-time": Date.now() });
-    console.log("",req.url, req.method);
+    console.log("🟢", req.url, req.method);
     next();
 });
 
-//external middleware
+// external middleware
 app.use(morgan("dev"));
 
 app.use("/products", productRouter);

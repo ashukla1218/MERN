@@ -12,7 +12,7 @@ const validateForTitleAndPrice = (req, res, next) => {
     next();
 };
 
-const getDataMiddleware = async(req, res, next) => {
+const getDataMiddleware = async (req, res, next) => {
     const text = await fsPromises.readFile("./data.json", { encoding: "utf8" });
     let products;
     try {
@@ -21,6 +21,26 @@ const getDataMiddleware = async(req, res, next) => {
         products = [];
     }
     req.products = products;
+    next();
+};
+
+const validateID = (req, res, next) => {
+    const params = req.params;
+    const { products } = req;
+
+    const prIdx = products.findIndex((elem) => {
+        if (elem.id == params.id) return true;
+        return false;
+    });
+    if (prIdx === -1) {
+        res.status(400);
+        res.json({
+            status: "fail",
+            message: "!! Invalid product id",
+        });
+        return;
+    }
+    req.productId = prIdx;
     next();
 };
 
@@ -47,13 +67,6 @@ const getProducts = async (req, res) => {
 
 const createProduct = async (req, res) => {
     const body = req.body;
-    if (!body.title || !body.price) {
-        res.json({
-            status: "fail",
-            message: "Title and Price is required",
-        });
-        return;
-    }
     const products = req.products;
     let lastId = 0;
     if (products.length != 0) {
@@ -73,28 +86,9 @@ const createProduct = async (req, res) => {
 };
 
 const replaceProduct = async (req, res) => {
-    const params = req.params;
     const body = req.body;
-    if (!body.title || !body.price) {
-        res.json({
-            status: "fail",
-            message: "Title and Price is required",
-        });
-        return;
-    }
     const products = req.products;
-    const prIdx = products.findIndex((elem) => {
-        if (elem.id == params.id) return true;
-        return false;
-    });
-    if (prIdx === -1) {
-        res.status(400);
-        res.json({
-            status: "fail",
-            message: "Invalid product id",
-        });
-        return;
-    }
+    const prIdx = req.productId;
 
     body.id = products[prIdx].id;
     products[prIdx] = body;
@@ -109,20 +103,8 @@ const replaceProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-    const params = req.params;
     const products = req.products;
-    const prIdx = products.findIndex((elem) => {
-        if (elem.id == params.id) return true;
-        return false;
-    });
-    if (prIdx === -1) {
-        res.status(400);
-        res.json({
-            status: "fail",
-            message: "Invalid product id",
-        });
-        return;
-    }
+    const prIdx = req.productId;
 
     products.splice(prIdx, 1);
     await fsPromises.writeFile("./data.json", JSON.stringify(products));
@@ -137,21 +119,9 @@ const deleteProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-    const params = req.params;
     const body = req.body;
     const products = req.products;
-    const prIdx = products.findIndex((elem) => {
-        if (elem.id == params.id) return true;
-        return false;
-    });
-    if (prIdx === -1) {
-        res.status(400);
-        res.json({
-            status: "fail",
-            message: "Invalid product id",
-        });
-        return;
-    }
+    const prIdx = req.productId;
 
     const newOBJ = {
         ...products[prIdx],
@@ -177,4 +147,5 @@ module.exports = {
     updateProduct,
     validateForTitleAndPrice,
     getDataMiddleware,
+    validateID,
 };
