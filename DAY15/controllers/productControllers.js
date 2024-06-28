@@ -1,5 +1,36 @@
 const productModel = require("../models/productModel.js");
 
+const checkId = async(req,res,next)=>{
+    try{
+        const {id} = req.params;
+    const product = await productModel.findById(id);
+    if (!product){
+        response.status(404);
+        res.json({
+            status: "fail",
+            message: "product id not found",
+            });
+            return ;
+    }
+   next();
+    } catch(err){
+        if (err.name == "CastError"){
+            res.status(400);
+            res.json({
+                status: "fail",
+                message: "Invalid product Id",
+            });
+            return ;
+        }
+        res.status(500);
+        res.json({
+            status: "fail",
+            err: "Internal server Error",
+        });
+    }
+    
+}
+
 const getProducts = async(req,res) =>{
     const products = await productModel.find();
     res.send({
@@ -58,5 +89,5 @@ const replaceProduct = async (req, res) => {
 };
 
 module.exports = {
-    getProducts,createProduct,replaceProduct,
+    getProducts,createProduct,replaceProduct,checkId,
 };
