@@ -32,13 +32,17 @@ const checkId = async(req,res,next)=>{
 }
 
 const getProducts = async(req,res) =>{
-    const products = await productModel.find({}).limit(10);
+    const{limit, page} = req.query;
+    const products = await productModel.find()
+    .skip((page-1)*limit)
+    .limit(limit);
     res.send({
         status: "success",
         data: {
             products: products
         },
     });
+    
 };
 
 const createProduct = async (req,res) =>{
