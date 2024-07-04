@@ -1,58 +1,124 @@
 import ReactDOM from "react-dom/client";
-import "./style.css";
-import { IoSearch } from "react-icons/io5";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
+import "./globalStyles.css";
+import HomePage from "./src/Pages/homePage";
+import SearchPage from "./src/Pages/amazonSearchPage";
 
 const parent = document.getElementById("root");
 const root = ReactDOM.createRoot(parent);
-const items=[
+
+const productInfoCards = [
+    {
+        id: 1,
+        title: "Revamp",
+        products: [
+            {
+                title: "Air Conditioners",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Refrigerators",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Microwaves",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Washing Machines",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
+            },
+        ],
+    },
+    {
+        id: 2,
+        title: "Revamp",
+        products: [
+            {
+                title: "Air Conditioners",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Refrigerators",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Microwaves",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Washing Machines",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
+            },
+        ],
+    },
+    {
+        id: 3,
+        title: "Revamp",
+        products: [
+            {
+                title: "Air Conditioners",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Refrigerators",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Microwaves",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Washing Machines",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
+            },
+        ],
+    },
+    {
+        id: 4,
+        title: "Revamp",
+        products: [
+            {
+                title: "Air Conditioners",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Refrigerators",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Microwaves",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
+            },
+            {
+                title: "Washing Machines",
+                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
+            },
+        ],
+    },
+];
+
+const categories = [
     "Fresh",
-    "Amazon miniTv",
+    "Amazon MiniTV",
     "Sell",
-    "Best Seller",
+    "Best Sellers",
     "Mobiles",
     "Todays Deals",
     "Prime",
     "Fashion",
-    "Electonics",   
+    "Electronics",
+];
 
-]
-
-const HomePage = ()=>{
-    return (
-        <div className="homepage-root-container">
-            <nav className="homepage-nav">
-                <h4>amazon</h4>
-                <p><IoLocationOutline />Address:<br />LPU University</p>
-                <div className="homepage-search-container">
-                    <select />
-                    <input />
-                    <button> <IoSearch /></button>
-                </div>
-                <h5><CgProfile />Profile</h5>
-                <h5><MdOutlineShoppingCart />Cart</h5>
-            </nav>
-            <div className="homepage-category-bar">
-                <button><GiHamburgerMenu />ALL</button>
-                <div className= "category-items">
-                    {items.map((elem)=>{
-                        return <p>{elem}</p>
-                    })}
-                </div>
-            </div>
-        </div>
-    )
-};
-
-const App = () =>{
+const App = () => {
     return (
         <div>
-            <HomePage />
+            {/* <HomePage 
+                productInfoCards={productInfoCards} 
+                categories={categories}
+            /> */}
+            <SearchPage categories={categories} />
         </div>
     );
 };
 
-root.render(App());
+root.render(<App />);
