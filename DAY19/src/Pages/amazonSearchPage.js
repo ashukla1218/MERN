@@ -1,47 +1,42 @@
+import { useEffect ,useState} from "react";
 import CategoryBar from "../components/categoryBar";
 import Navbar from "../components/navbar";
-import { useState } from "react";
+
+import Navbar from "../components/navbar";
 
 const SearchPage = (props) => {
-    const { categories } = props;
-
-    const customStyles = {
-        padding: "48px",
-        textAlign: "center",
-        backgroundColor: "Yellow",
-    };
-
-    // let searchText = "";
-    const [searchText, setSearchText] = useState();
-    console.log("initially: ", searchText);
-
-    const handleSearch = (e) => {
-        const val = e.target.value;
-        // searchText = val;
-        setSearchText(val);
-    };
+    const {categories, searchText, setSearchText} = props;
 
     const [products, setProducts] = useState([]);
+
+    
     async function getData(){
-        const res = await fetch("https://dummyjson.com/products");
+        const res = await fetch(`https://dummyjson.com/products/search?q=${searchText}`);
         const data = await res.json();
         setProducts(data.products);
+        console.log("api called");
     }
+
+    useEffect(()=>{
+        getData();
+    }, [searchText]);
 
     return (
         <div>
-            <Navbar />
-            <CategoryBar categories={categories} />
-            <div style={customStyles}>
-                <input type="text" onChange={handleSearch} />
+            <Navbar setSearchText={setSearchText}/>
+            <CategoryBar categories = {categories} />
+        
+        <div>
+            {/* <div>
+                <input type="text" onChange={getData} />
             </div>
-            <div style={customStyles}>
                 <h1>The search text is: {searchText}</h1>
-            </div>
-            <button onClick={getData}>Get Data</button>
+                <hr />
+            <button onClick={getData}>Get Data</button> */}
             {products.map((elem)=>{
-                return <p>{elem.title}</p>;
+                return <p key={elem.id}>{elem.title}</p>;
             })}
+        </div>
         </div>
     );
 };
