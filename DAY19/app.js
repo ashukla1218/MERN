@@ -7,6 +7,7 @@ import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
+import ProductInfo from "./src/Pages/productInfo";
 
 const parent = document.getElementById("root");
 const root = ReactDOM.createRoot(parent);
@@ -122,16 +123,21 @@ const App = () => {
         const router = createBrowserRouter([
             {
                 path: '/',
-                element: <HomePage 
+                element: (<HomePage 
                 searchText={searchText}
                 setSearchText={setSearchText}
                 productInfoCards={productInfoCards} 
                 categories={categories} />
+                ),
             },
             {
                 path: '/search',
                 element: <SearchPage searchText={searchText} setSearchText={setSearchText} categories={categories} />
-            }
+            },
+            {
+                path: "/search/:id",
+                element: <ProductInfo />
+            },
         ]);
         return <RouterProvider router={router} />
 };
