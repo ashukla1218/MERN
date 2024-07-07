@@ -2,7 +2,6 @@ import { useEffect ,useState} from "react";
 import CategoryBar from "../components/categoryBar";
 import Navbar from "../components/navbar";
 
-import Navbar from "../components/navbar";
 
 const SearchPage = (props) => {
     const {categories, searchText, setSearchText} = props;
@@ -41,6 +40,7 @@ const SearchPage = (props) => {
                         <p className="product-description">{elem.description}</p>
                         <p className="product-price">Price: ${elem.price}</p>
                         <div className="product-rating">⭐⭐⭐⭐⭐ ({elem.rating})</div>
+                        <button className="view-product-btn">View product</button>
                         <button className="add-to-cart-btn">Add to cart</button>
                     </div>
                 );
