@@ -26,7 +26,7 @@ const SearchPage = (props) => {
             <Navbar setSearchText={setSearchText}/>
             <CategoryBar categories = {categories} />
         
-        <div>
+        <div className="product-card-holder">
             {/* <div>
                 <input type="text" onChange={getData} />
             </div>
@@ -34,7 +34,16 @@ const SearchPage = (props) => {
                 <hr />
             <button onClick={getData}>Get Data</button> */}
             {products.map((elem)=>{
-                return <p key={elem.id}>{elem.title}</p>;
+                return (
+                    <div key={elem.id} className="product-card">
+                        <img className ="product-image" src={elem.thumbnail} alt={elem.title} />
+                        <h2 className="product-title">{elem.title}</h2>
+                        <p className="product-description">{elem.description}</p>
+                        <p className="product-price">Price: ${elem.price}</p>
+                        <div className="product-rating">⭐⭐⭐⭐⭐ ({elem.rating})</div>
+                        <button className="add-to-cart-btn">Add to cart</button>
+                    </div>
+                );
             })}
         </div>
         </div>

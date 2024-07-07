@@ -136,7 +136,7 @@ const App = () => {
             },
             {
                 path: "/search/:id",
-                element: <ProductInfo />
+                element: <ProductInfo productInfoCards={productInfoCards}/>
             },
         ]);
         return <RouterProvider router={router} />
