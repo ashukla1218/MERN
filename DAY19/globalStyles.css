@@ -104,9 +104,10 @@
     }
 }
 .product-card-holder{
+    background-color: #707172;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
     justify-content: space-around;
     padding: 16px;
 }
@@ -118,7 +119,7 @@
     width: 300px;
     padding: 16px;
     text-align: center;
-    transition: transform 0.2s
+    transition: transform 0.2s;
 }
 .product-image {
     width: 100%;
@@ -130,13 +131,18 @@
 .product-title {
     font-size: 16px;
     font-weight: bold;
-    margin: 8px 0;
+    margin: 3px 0;
     height: 40px;
     overflow: hidden;
 }
 .product-rating {
     color: #FFA41C;
     margin-bottom: 8px;
+}
+.product-price{
+    font-weight: bold;
+    margin: 5px;
+    font-size: 20px;
 }
 .view-product-btn{
     background-color: #FFD814;

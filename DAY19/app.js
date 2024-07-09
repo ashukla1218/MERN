@@ -1,107 +1,14 @@
 import ReactDOM from "react-dom/client";
 import "./globalStyles.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./src/Pages/homePage";
 import SearchPage from "./src/Pages/amazonSearchPage";
 import { useState } from "react";
-import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
 import ProductInfo from "./src/Pages/productInfo";
+import AppContext from "./src/context/appContext";
 
 const parent = document.getElementById("root");
 const root = ReactDOM.createRoot(parent);
-
-const productInfoCards = [
-    {
-        id: 1,
-        title: "Revamp",
-        products: [
-            {
-                title: "Air Conditioners",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Refrigerators",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Microwaves",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Washing Machines",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
-            },
-        ],
-    },
-    {
-        id: 2,
-        title: "Revamp",
-        products: [
-            {
-                title: "Air Conditioners",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Refrigerators",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Microwaves",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Washing Machines",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
-            },
-        ],
-    },
-    {
-        id: 3,
-        title: "Revamp",
-        products: [
-            {
-                title: "Air Conditioners",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Refrigerators",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Microwaves",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Washing Machines",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
-            },
-        ],
-    },
-    {
-        id: 4,
-        title: "Revamp",
-        products: [
-            {
-                title: "Air Conditioners",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Refrigerators",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B08345R1ZW---372x232._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Microwaves",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/B07G5J5FYP._SY232_CB667322346_.jpg",
-            },
-            {
-                title: "Washing Machines",
-                img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08CPQVLZT._SY232_CB667322346_.jpg",
-            },
-        ],
-    },
-];
 
 const categories = [
     "Fresh",
@@ -115,31 +22,64 @@ const categories = [
     "Electronics",
 ];
 
-
-
 const App = () => {
     const [searchText, setSearchText] = useState("");
-        
-        const router = createBrowserRouter([
-            {
-                path: '/',
-                element: (<HomePage 
-                searchText={searchText}
-                setSearchText={setSearchText}
-                productInfoCards={productInfoCards} 
-                categories={categories} />
-                ),
-            },
-            {
-                path: '/search',
-                element: <SearchPage searchText={searchText} setSearchText={setSearchText} categories={categories} />
-            },
-            {
-                path: "/search/:id",
-                element: <ProductInfo productInfoCards={productInfoCards}/>
-            },
-        ]);
-        return <RouterProvider router={router} />
+
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <HomePage  />,
+        },
+        {
+            path: "/search",
+            element: <SearchPage />,
+        },
+        {
+            path: "/search/:id",
+            element: <ProductInfo />,
+        },
+    ]);
+
+    const [cart, setCart] = useState([]);
+    const addToCart = (elem) => {
+        const isPresent = cart.findIndex((cI) => cI.id === elem.id);
+        //check if element is present in cart
+        if(isPresent===-1){
+            const newCart = [...cart];
+            newCart.push({
+                title: elem.title,
+                id: elem.id,
+                price: elem.price,
+                count: 1,
+            });
+            setCart(newCart);
+        }
+        else{
+            const newCart = cart.map((cartItem)=>{
+                if(cartItem.id ===elem.id){
+                    const newCartItem = {...cartItem};
+                    newCartItem.count = newCartItem.count + 1;
+                    return newCartItem;
+                }else return cartItem;
+            });
+            setCart(newCart);
+        }
+    }
+
+    const contextValues = {
+        cart,
+        addToCart,
+        categories,
+        searchText,
+        setSearchText,
+    };
+    console.log(cart);
+
+    return (
+        <AppContext.Provider value={contextValues}>
+            <RouterProvider router={router} />;
+        </AppContext.Provider>
+    );
 };
 
-root.render(<App />);
+root.render(<App />);;

@@ -1,28 +1,16 @@
-import { useEffect ,useState} from "react";
+import { useContext } from "react";
 import CategoryBar from "../components/categoryBar";
 import Navbar from "../components/navbar";
-
+import useGetProducts from "../hooks/useGetProducts";
+import AppContext from "../context/appContext";
 
 const SearchPage = (props) => {
-    const {categories, searchText, setSearchText} = props;
-
-    const [products, setProducts] = useState([]);
-
-    
-    async function getData(){
-        const res = await fetch(`https://dummyjson.com/products/search?q=${searchText}`);
-        const data = await res.json();
-        setProducts(data.products);
-        console.log("api called");
-    }
-
-    useEffect(()=>{
-        getData();
-    }, [searchText]);
-
+    const { categories } = props;
+    const products = useGetProducts();
+    const { addToCart } = useContext(AppContext);
     return (
         <div>
-            <Navbar setSearchText={setSearchText}/>
+            <Navbar />
             <CategoryBar categories = {categories} />
         
         <div className="product-card-holder">
@@ -37,11 +25,15 @@ const SearchPage = (props) => {
                     <div key={elem.id} className="product-card">
                         <img className ="product-image" src={elem.thumbnail} alt={elem.title} />
                         <h2 className="product-title">{elem.title}</h2>
-                        <p className="product-description">{elem.description}</p>
+                        <p className="product-tags">{elem.tags.join(': ')}</p>
                         <p className="product-price">Price: ${elem.price}</p>
                         <div className="product-rating">⭐⭐⭐⭐⭐ ({elem.rating})</div>
                         <button className="view-product-btn">View product</button>
-                        <button className="add-to-cart-btn">Add to cart</button>
+                        <button className="add-to-cart-btn" onClick={()=>{
+                            addToCart(elem);
+                            }}>
+                                Add to cart
+                                </button>
                     </div>
                 );
             })}
