@@ -3,6 +3,7 @@ import "./globalStyles.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./src/Pages/homePage";
 import SearchPage from "./src/Pages/amazonSearchPage";
+import SignUp from "./src/Pages/signUp";
 import { useState } from "react";
 import ProductInfo from "./src/Pages/productInfo";
 import AppContext from "./src/context/appContext";
@@ -38,6 +39,10 @@ const App = () => {
             path: "/search/:id",
             element: <ProductInfo />,
         },
+        {
+            path: "/signup",
+            element: <SignUp />,
+        }
     ]);
 
     const [cart, setCart] = useState([]);
