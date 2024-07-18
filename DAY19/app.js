@@ -7,6 +7,7 @@ import SignUp from "./src/Pages/signUp";
 import { useState } from "react";
 import ProductInfo from "./src/Pages/productInfo";
 import AppContext from "./src/context/appContext";
+import Login from "./src/Pages/login";
 
 const parent = document.getElementById("root");
 const root = ReactDOM.createRoot(parent);
@@ -25,6 +26,8 @@ const categories = [
 
 const App = () => {
     const [searchText, setSearchText] = useState("");
+    const [cart, setCart] = useState([]);
+    const [loggedInUser, setLoggedInUser] = useState(null);
 
     const router = createBrowserRouter([
         {
@@ -42,10 +45,14 @@ const App = () => {
         {
             path: "/signup",
             element: <SignUp />,
-        }
+        },
+        {
+            path: "/login",
+            element: <Login/>,
+        },
     ]);
 
-    const [cart, setCart] = useState([]);
+    
     const addToCart = (elem) => {
         const isPresent = cart.findIndex((cI) => cI.id === elem.id);
         //check if element is present in cart
@@ -71,14 +78,20 @@ const App = () => {
         }
     }
 
+    const appLogin = ()=>{
+        setLoggedInUser(user);
+    }
+
     const contextValues = {
+        loggedInUser,
         cart,
         addToCart,
         categories,
         searchText,
         setSearchText,
+        appLogin,
     };
-    console.log(cart);
+    console.log("state", loggedInUser);
 
     return (
         <AppContext.Provider value={contextValues}>
@@ -87,4 +100,4 @@ const App = () => {
     );
 };
 
-root.render(<App />);;
+root.render(<App />);

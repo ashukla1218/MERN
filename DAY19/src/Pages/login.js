@@ -1,21 +1,21 @@
-
 import { useState } from "react";
-import useSignUp from "../hooks/useSignUp";
+import useLogin from "../hooks/useLogin";
+import {Link} from 'react-router-dom'
 
-const SignUp = () => {
-    const { signUp } = useSignUp();
+const Login = () => {
+    const { login } = useLogin();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const validate = () => {
-        const validate1 = email.length>4;
-        const validate2 = password.length>=8;
+        const validate1 = email.length > 4;
+        const validate2 = password.length >= 8;
         if (validate1 && validate2) {
-            signUp({ email, password });
-        } else if(!validate1){
-            alert("Incorrect Email...");
-        } else{
-            alert(" password must be greater than 7 characters");
+            login({ email, password });
+        } else if (!validate1) {
+            alert("Incorrect Email");
+        } else {
+            alert("Password must be greater than 7 characters");
         }
     };
 
@@ -33,10 +33,10 @@ const SignUp = () => {
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
             />
-            <button onClick={validate}>Sign Up</button>
+            <button onClick={validate}>Login</button>
+            <p>Don't have an account? <Link to="/signup" className="link">Sign Up</Link> </p>
         </div>
     );
-
 };
 
-export default SignUp;
+export default Login;
